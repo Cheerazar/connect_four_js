@@ -13,6 +13,14 @@
 }
 */
 
+.chips {
+  border-radius: 50%;
+  margin: 15px;
+  width: 70px;
+  height: 70px;
+  vertical-align: middle;
+}
+
 table{
   border: 1px solid black;
   table-layout: fixed;
@@ -26,6 +34,10 @@ table{
   height: 100px;
   width: 100px;
   border: 1px solid black;
+}
+
+#row1 .col3 .chips {
+  background-color: red;
 }
 
 
