@@ -20,7 +20,10 @@ Board.prototype = {
   },
 
   gameWon: function () {
-
+    // find next filled cell
+      // check adjacent cells for matching color
+        // for each match, follow direction and look for further matches
+          // if 4 in a row, game is won
   }
 }
 var board = new Board();
