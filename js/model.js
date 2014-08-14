@@ -65,13 +65,26 @@ Board.prototype = {
       }
     }
     return matches;
+  },
+
+  dropCol: function (column, currentColor) {
+    for (var i = 1; i < 7; i++) {
+      var currentCell = this.gameBoard['row' + i]['col' + column];
+      if (currentCell.empty) {
+        currentCell.empty = false;
+        currentCell.color = currentColor;
+        return i;  // return the row number
+      }
+    }
+
+    return false; // row is full
   }
 }
 var board = new Board();
 
 // console.log(board.gameBoard)
 // board.gameBoard.row3.col6.color = "red";
-board.gameWon("red");
+// board.gameWon("red");
 
 // neighbor cells test output for all cases
 // console.log('row1, col1: ' + board.neighborCells(1, 1));
@@ -80,4 +93,3 @@ board.gameWon("red");
 // console.log('row6, col4: ' + board.neighborCells(6, 4));
 // console.log('row6, col7: ' + board.neighborCells(6, 7));
 // console.log('row3, col3, result index 3 (3,4): ' + board.neighborCells(3, 3)[3]);
-
