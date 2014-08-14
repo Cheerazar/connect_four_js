@@ -27,7 +27,7 @@ Board.prototype = {
           console.log("Row "+i+", Column "+j+" is "+currentColor);
           // call method to check adjacent cells to UL, U, UR, and R
           // adjacentCells(i, j, color)
-          // var neighborCells = adjacentCells(i, j)
+          var neighbors = this.neighborCells(i, j);
           // var matches = matchCells(neighborCells, color)
         }
       }
@@ -54,12 +54,23 @@ Board.prototype = {
       neighbors.push([row, col+1])
     }
     return neighbors;
+  },
+
+  matchCells: function(cellSet, currentColor) {
+    var matches = [];
+    for (var i=0; i<cellSet.length; i++) {
+      var currentCell = this.gameBoard['row'+cellSet[i][0]]['col'+cellSet[i][1]];
+      if (currentCell.color === currentColor) {
+        matches.push(currentCell);
+      }
+    }
+    return matches;
   }
 }
 var board = new Board();
 
-console.log(board.gameBoard)
-board.gameBoard.row3.col6.color = "red";
+// console.log(board.gameBoard)
+// board.gameBoard.row3.col6.color = "red";
 board.gameWon("red");
 
 // neighbor cells test output for all cases
