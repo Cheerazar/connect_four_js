@@ -4,7 +4,7 @@ var Model = function() {
 };
 
 Model.prototype = {
-  dropInColumn: function(col) {
+  dropCol: function(col) {
     console.log(col); }
 }
 
@@ -23,7 +23,7 @@ var Controller = function(model,view) {
 
 Controller.prototype = {
   whichColumn: function() {
-    model.dropInColumn(parseInt($(this).attr('class')[3], 10));
+    model.dropCol(parseInt($(this).attr('class')[3], 10));
     // console.log(parseInt($(this).attr('class')[3]));
   },
   initializeEvents: function() {
