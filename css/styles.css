@@ -1,10 +1,32 @@
+/* This is tiny grid: */
+/*table{
+    border: 1px solid black;
+    table-layout: fixed;
+    width: 200px;
+}
+
 .board td {
   background-color: white;
   height: 20px;
   width: 20px;
   border: 1px solid black;
 }
+*/
 
-/*.board td.cell {
-  background-color: black;
-}*/
+table{
+  border: 1px solid black;
+  table-layout: fixed;
+  margin: 10%;
+}
+
+.board td {
+  display: block;
+  float: left;
+  background-color: #9999FF;
+  height: 100px;
+  width: 100px;
+  border: 1px solid black;
+}
+
+
+
