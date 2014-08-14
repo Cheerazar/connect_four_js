@@ -37,7 +37,9 @@ Board.prototype = {
     return false; // Didn't find win condition
   },
 
+  adjacentCells: function(row, col, currentColor) {
 
+  }
 }
 var board = new Board();
 
