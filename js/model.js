@@ -1,11 +1,11 @@
 var Board = function () {
-  this.gameBoard = this.makeBoard()
+  this.gameBoard = this.makeBoard();
 };
 
 var Cell = function() {
   this.empty = true;
   this.color = null;
-}
+};
 
 Board.prototype = {
   makeBoard: function () {
@@ -79,7 +79,7 @@ Board.prototype = {
       }
     }
     if (col !== 7) {
-      neighbors.push([row, col+1])
+      neighbors.push([row, col+1]);
     }
     return neighbors;
   },
