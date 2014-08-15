@@ -14,7 +14,7 @@ Controller.prototype = {
       view.insertChip(row, column, controller.currentColor);
       if (model.gameWon(controller.currentColor)) {
         // this block should send message to view
-        console.log("FUCKIN-A RIGHT " + controller.currentColor.toUpperCase());
+        modal.open({content: "YOU WIN, "+ controller.currentColor.toUpperCase()});
       }
       controller.changeTurn();
     }
