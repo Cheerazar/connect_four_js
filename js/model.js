@@ -9,7 +9,7 @@ var Cell = function() {
 
 Board.prototype = {
   makeBoard: function () {
-    var board = {}
+    var board = {};
     for (var i = 1; i <= 6; i++) { // row
       board['row' + i] = {};
       for (var j = 1; j <= 7; j++) { // column
@@ -100,7 +100,7 @@ Board.prototype = {
 
     return false; // row is full
   }
-}
+};
 var board = new Board();
 
 // console.log(board.gameBoard)
