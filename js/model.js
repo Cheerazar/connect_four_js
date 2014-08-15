@@ -24,12 +24,12 @@ Board.prototype = {
     for (var i = 1; i <= 6; i++) { // row
       for (var j = 1; j <= 7; j++) { // column
         if(this.gameBoard['row' + i]['col' + j].color === currentColor) {
-          console.log("Row "+i+", Column "+j+" is "+currentColor);
+          // console.log("Row "+i+", Column "+j+" is "+currentColor);
           // call method to check adjacent cells to UL, U, UR, and R
           // adjacentCells(i, j, color)
           var neighbors = this.neighborCells(i, j);
-          var matches = matchCells(neighborCells, currentColor);
-
+          var matches = this.matchCells(neighbors, currentColor);
+          debugger;
         }
       }
     }
@@ -60,21 +60,23 @@ Board.prototype = {
 
       }
     }
+  },
 
-    // var neighbors = [];
-    // if (col !== 1 && row !== 6) {
-    //   neighbors.push([row+1, col-1]);
-    // }
-    // if (row !== 6) {
-    //   neighbors.push([row+1, col]);
-    //   if (col !== 7) {
-    //     neighbors.push([row+1,col+1]);
-    //   }
-    // }
-    // if (col !== 7) {
-    //   neighbors.push([row, col+1])
-    // }
-    // return neighbors;
+  neighborCells: function(row, col) {
+    var neighbors = [];
+    if (col !== 1 && row !== 6) {
+      neighbors.push([row+1, col-1]);
+    }
+    if (row !== 6) {
+      neighbors.push([row+1, col]);
+      if (col !== 7) {
+        neighbors.push([row+1,col+1]);
+      }
+    }
+    if (col !== 7) {
+      neighbors.push([row, col+1])
+    }
+    return neighbors;
   },
 
   matchCells: function(cellSet, currentColor) {
