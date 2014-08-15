@@ -13,7 +13,7 @@
 }
 */
 
-.chips {
+.chip {
   border-radius: 50%;
   margin: 15px;
   width: 70px;
@@ -36,9 +36,12 @@ table{
   border: 1px solid black;
 }
 
-#row1 .col3 .chips {
+.red {
   background-color: red;
 }
 
+.black {
+  background-color: black;
+}
 
 
