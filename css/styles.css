@@ -13,6 +13,8 @@
 }
 */
 
+/*ANIMATION */
+
 .chip {
   border-radius: 50%;
   margin: 15px;
@@ -21,11 +23,26 @@
   vertical-align: middle;
 }
 
-table{
-  border: 1px solid black;
-  table-layout: fixed;
-  margin: 10%;
+.animation_chip {
+  z-index: 100;
+  background-color: blue;
+  border-radius: 50%;
+  margin: 15px;
+  width: 70px;
+  height: 70px;
+  vertical-align: middle;
 }
+
+table{
+  table-layout: fixed;
+  margin: 0 auto;
+}
+
+#dashboard {
+  display: block;
+}
+
+
 
 .board td {
   display: block;
@@ -33,7 +50,39 @@ table{
   background-color: #9999FF;
   height: 100px;
   width: 100px;
-  border: 1px solid black;
+}
+
+#game_board {
+  position: absolute;
+  left: 200px;
+  margin-left: 200px;
+}
+
+#ani_board {
+  pointer-events: none;
+  z-index: 1;
+  width: 700px;
+  height: 100%;
+  position: fixed;
+  top: -500px;
+  left: 200px;
+  margin-left: 200px;
+}
+
+.ani_chip_container {
+  top: -300px;
+  display: inline-block;
+  margin-left: 15px;
+  margin-right: 81px;
+}
+
+.ani_chip {
+  position:fixed;
+  top:-200px;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  background-color: green;
 }
 
 .red {

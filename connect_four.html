@@ -16,8 +16,33 @@
   <title></title>
 </head>
 <body>
+    <div id="ani_board">
+      <div class="ani_chip_container"><div class="ani_chip tag col1" id="ani1"></div></div>
+      <div class="ani_chip_container"><div class="ani_chip tag col2" id="ani2"></div></div>
+      <div class="ani_chip_container"><div class="ani_chip tag col3" id="ani3"></div></div>
+      <div class="ani_chip_container"><div class="ani_chip tag col4" id="ani4"></div></div>
+      <div class="ani_chip_container"><div class="ani_chip tag col5" id="ani5"></div></div>
+      <div class="ani_chip_container"><div class="ani_chip tag col6" id="ani6"></div></div>
+      <div class="ani_chip_container"><div class="ani_chip tag col7" id="ani7"></div></div>
+    </div>
 
-  <table class="board">
+    <div id="dashboard">
+    <div>
+        <form id="start">
+    <input type="submit" value="Start Game" >
+  </form>
+      <span id="turn">Player 1</span>
+      <span>is up!</span></div>
+    <div>
+      <span>Player 1 time remaining:</span>
+      <span id="timer-player1">5:00</span></div>
+    <div >
+      <span>Player 2 time remaining:</span>
+      <span id="timer-player2">5:00</span>
+    </div>
+
+  </div>
+  <table class="board" id="game_board">
     <tr id="row6">
       <td class="col1"><div class="chip"></div></td>
       <td class="col2"><div class="chip"></div></td>
@@ -73,22 +98,9 @@
       <td class="col7"><div class="chip"></div></td>
     </tr>
   </table>
-  <form id="start">
-    <input type="submit" value="Start Game" >
-  </form>
 
-  <div id="dashboard">
-    <div>
-      <span id="turn">Player 1</span>
-      <span>is up!</span></div>
-    <div>
-      <span>Player 1 time remaining:</span>
-      <span id="timer-player1">5:00</span></div>
-    <div >
-      <span>Player 2 time remaining:</span>
-      <span id="timer-player2">5:00</span>
-    </div>
-  </div>
+
+
 
 
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
