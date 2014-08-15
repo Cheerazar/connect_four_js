@@ -1,15 +1,15 @@
 var Board = function () {
-  this.gameBoard = this.makeBoard()
+  this.gameBoard = this.makeBoard();
 };
 
 var Cell = function() {
   this.empty = true;
   this.color = null;
-}
+};
 
 Board.prototype = {
   makeBoard: function () {
-    var board = {}
+    var board = {};
     for (var i = 1; i <= 6; i++) { // row
       board['row' + i] = {};
       for (var j = 1; j <= 7; j++) { // column
@@ -24,57 +24,64 @@ Board.prototype = {
     for (var i = 1; i <= 6; i++) { // row
       for (var j = 1; j <= 7; j++) { // column
         if(this.gameBoard['row' + i]['col' + j].color === currentColor) {
-          console.log("Row "+i+", Column "+j+" is "+currentColor);
-          // call method to check adjacent cells to UL, U, UR, and R
-          // adjacentCells(i, j, color)
+          // find adjacent cells to UL,U,UR, or R of same color
           var neighbors = this.neighborCells(i, j);
-          var matches = matchCells(neighborCells, currentColor);
-
+          var matches = this.matchCells(neighbors, currentColor);
+          // if any of those matches are the start of a connect 4, we're done here
+          if (this.checkVectors([i,j], matches)) {
+            return true;
+          }
         }
       }
     }
-      // check adjacent cells for matching color
-        // for each match, follow direction and look for further matches
-          // if 4 in a row, return true
-
-    return false; // Didn't find win condition
+    return false; // Didn't find win condition anywhere
   },
 
-  potentialWinVectors: function(row, col) {
-    // if ( !((row + 3 > 6) || (col + 3 > 7)) )
-    var vectorsToWin = [];
-    // if row + 3 > 6 || col - 3 < 1
-    // [[row + 1, col - 1], [row + 2, col - 2], [row + 3, col -3]]
+  checkVectors: function(coords, matches) {
+    var connectedFour = false;
+    var winningColor = this.gameBoard['row'+coords[0]]['col'+coords[1]].color;
+    // iterate through matches and follow each direction until 4 matches or failure
+    for (var i=0; i<matches.length; i++) {
+      var dY = coords[0] - matches[i][0]; // calculate vertical shift between matches
+      var dX = coords[1] - matches[i][1]; // and ditto for horizontal
 
-    // if row + 3 > 6
-    // [[row + 1, col], [row + 2, col], [row + 3, col]]
-
-    // if row + 3 > 6 || col + 3 > 7
-    // [[row + 1, col + 1], [row + 2, col + 2], [row + 3, col + 3]]
-
-    // if col + 3 > 7
-    // [[row, col + 1], [row, col + 2], [row, col + 3]]
-    for (var i = 0; i < 4; i++) {
-      var vector = [];
-      for (var j = 1; j < 4; j++) {
-
+      if (this.followVector(coords, dY, dX)) {
+        connectedFour = true;
       }
     }
+    return connectedFour;
+  },
 
-    // var neighbors = [];
-    // if (col !== 1 && row !== 6) {
-    //   neighbors.push([row+1, col-1]);
-    // }
-    // if (row !== 6) {
-    //   neighbors.push([row+1, col]);
-    //   if (col !== 7) {
-    //     neighbors.push([row+1,col+1]);
-    //   }
-    // }
-    // if (col !== 7) {
-    //   neighbors.push([row, col+1])
-    // }
-    // return neighbors;
+  followVector: function(coords, rowShift, colShift) {
+    var vectorLength = 1;
+    var stillMatching = true;
+    while (stillMatching && vectorLength < 4) {
+      var newRow = coords[0]-rowShift; // calculate next row coord along vector
+      var newCol = coords[1]-colShift; // ditto for next column coord
+      stillMatching = (this.gameBoard['row'+coords[0]]['col'+coords[1]].color === this.gameBoard['row'+newRow]['col'+newCol].color)
+      if (stillMatching) {
+        vectorLength++;
+        coords = [newRow, newCol];
+      }
+    }
+    return stillMatching;
+  },
+
+  neighborCells: function(row, col) {
+    var neighbors = [];
+    if (col !== 1 && row !== 6) {
+      neighbors.push([row+1, col-1]);
+    }
+    if (row !== 6) {
+      neighbors.push([row+1, col]);
+      if (col !== 7) {
+        neighbors.push([row+1,col+1]);
+      }
+    }
+    if (col !== 7) {
+      neighbors.push([row, col+1]);
+    }
+    return neighbors;
   },
 
   matchCells: function(cellSet, currentColor) {
@@ -82,7 +89,7 @@ Board.prototype = {
     for (var i=0; i<cellSet.length; i++) {
       var currentCell = this.gameBoard['row'+cellSet[i][0]]['col'+cellSet[i][1]];
       if (currentCell.color === currentColor) {
-        matches.push(currentCell);
+        matches.push([cellSet[i][0], cellSet[i][1]]);
       }
     }
     return matches;
@@ -100,7 +107,7 @@ Board.prototype = {
 
     return false; // row is full
   }
-}
+};
 var board = new Board();
 
 // console.log(board.gameBoard)
