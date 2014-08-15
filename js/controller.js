@@ -17,14 +17,18 @@ Controller.prototype = {
     }
   },
 
-  changeTurn: function() {
+  otherColor: function() {
     if (this.currentColor === "red") {
-      this.currentColor = "black";
+      return "black";
     } else if (this.currentColor === "black") {
-      this.currentColor = "red";
+      return "red";
     } else {
       console.log("WHAT THE FUCK");
     }
+  },
+
+  changeTurn: function() {
+    controller.currentColor = controller.otherColor();
   },
 
   initializeEvents: function() {
