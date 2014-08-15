@@ -9,9 +9,13 @@ Controller.prototype = {
     var column = parseInt($(this).attr('class')[3], 10);
     var row = model.dropCol(column, controller.currentColor);
     if (model.gameWon(controller.otherColor())) {
-      console.log("FUCKIN-A RIGHT " + controller.otherColor().toUpperCase());
+      // this is just to short-circuit attempted plays when game is won
     } else if (row) {
       view.insertChip(row, column, controller.currentColor);
+      if (model.gameWon(controller.currentColor)) {
+        // this block should send message to view
+        console.log("FUCKIN-A RIGHT " + controller.currentColor.toUpperCase());
+      }
       controller.changeTurn();
     }
   },
