@@ -27,12 +27,24 @@ Controller.prototype = {
 
   initializeEvents: function() {
     $("td").on('click', this.clickColumn);
+
+    $("#start").one("submit", function(event) {
+      event.preventDefault();
+      $(this).find('input[type="submit"]').attr('disabled','disabled');
+      console.log("working!");
+    });
+  },
+
+  startGame: function() {
+    this.initializeEvents();
+    // this.initializePlayers(red, black);
   }
-};
+}
 
 // DRIVER CODE
 
 var model = new Board();
 var view = new View();
 var controller = new Controller(model, view);
-controller.initializeEvents();
+controller.startGame();
+
