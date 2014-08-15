@@ -84,7 +84,7 @@ Board.prototype = {
     for (var i=0; i<cellSet.length; i++) {
       var currentCell = this.gameBoard['row'+cellSet[i][0]]['col'+cellSet[i][1]];
       if (currentCell.color === currentColor) {
-        matches.push(currentCell);
+        matches.push([cellSet[i][0], cellSet[i][1]]);
       }
     }
     return matches;
