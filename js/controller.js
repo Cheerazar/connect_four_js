@@ -1,29 +1,45 @@
 //CONTROLLER
 
 var Controller = function(model,view) {
+  this.currentColor = "red";
 };
 
 Controller.prototype = {
-  whichColumn: function() {
-    model.dropCol(parseInt($(this).attr('class')[3], 10));
-    // console.log(parseInt($(this).attr('class')[3]));
-  },
-  initializeEvents: function() {
-    for ( var i = 1; i <= 7; i++) {
-    $("td").on('click', this.whichColumn);
+  clickColumn: function() {
+    var column = parseInt($(this).attr('class')[3], 10);
+    var row = model.dropCol(column, this.currentColor);
+
+    if (row) {
+      view.insertChip(row, column, controller.currentColor);
+      controller.changeTurn();
     }
+  },
+
+  changeTurn: function() {
+    if (this.currentColor === "red") {
+      this.currentColor = "black";
+    } else if (this.currentColor === "black") {
+      this.currentColor = "red";
+    } else {
+      console.log("WHAT THE FUCK");
+    }
+  },
+
+  initializeEvents: function() {
+    $("td").on('click', this.clickColumn);
+
     $("#start").one("submit", function(event) {
       event.preventDefault();
       $(this).find('input[type="submit"]').attr('disabled','disabled');
       console.log("working!");
-    })
+    });
   },
+
   startGame: function() {
     this.initializeEvents();
     // this.initializePlayers(red, black);
-  },
+  }
 }
-
 
 // DRIVER CODE
 
