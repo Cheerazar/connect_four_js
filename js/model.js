@@ -58,10 +58,14 @@ Board.prototype = {
     while (stillMatching && vectorLength < 4) {
       var newRow = coords[0]-rowShift; // calculate next row coord along vector
       var newCol = coords[1]-colShift; // ditto for next column coord
-      stillMatching = (this.gameBoard['row'+coords[0]]['col'+coords[1]].color === this.gameBoard['row'+newRow]['col'+newCol].color)
-      if (stillMatching) {
-        vectorLength++;
-        coords = [newRow, newCol];
+      if (newRow > 0 && newRow < 7 && newCol > 0 && newCol < 8) {
+        stillMatching = (this.gameBoard['row'+coords[0]]['col'+coords[1]].color === this.gameBoard['row'+newRow]['col'+newCol].color);
+        if (stillMatching) {
+          vectorLength++;
+          coords = [newRow, newCol];
+        }
+      } else {
+        stillMatching = false;
       }
     }
     return stillMatching;
