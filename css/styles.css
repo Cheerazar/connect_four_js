@@ -33,6 +33,22 @@
   vertical-align: middle;
 }
 
+#background {
+  pointer-events: none;
+  z-index: 2;
+  position: absolute;
+  width: 900px;
+  height: 900px;
+  background-image: url("../background_v02.png");
+  top: -20px;
+  left: 100px;
+  margin-left: 200px;
+}
+
+#dashboard {
+  visibility: hidden;
+}
+
 table{
   table-layout: fixed;
   margin: 0 auto;
@@ -42,12 +58,10 @@ table{
   display: block;
 }
 
-
-
 .board td {
+  background-color: #efe7e7;
   display: block;
   float: left;
-  background-color: #9999FF;
   height: 100px;
   width: 100px;
 }
