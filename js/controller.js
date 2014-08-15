@@ -8,11 +8,10 @@ Controller.prototype = {
   clickColumn: function() {
     var column = parseInt($(this).attr('class')[3], 10);
     var row = model.dropCol(column, controller.currentColor);
-    if (row) {
+    if (model.gameWon(controller.otherColor())) {
+      console.log("FUCKIN-A RIGHT " + controller.otherColor().toUpperCase());
+    } else if (row) {
       view.insertChip(row, column, controller.currentColor);
-      if (model.gameWon(controller.currentColor)) {
-        console.log("FUCKIN-A RIGHT " + controller.currentColor.toUpperCase());
-      }
       controller.changeTurn();
     }
   },
