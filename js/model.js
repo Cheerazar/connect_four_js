@@ -28,7 +28,8 @@ Board.prototype = {
           // call method to check adjacent cells to UL, U, UR, and R
           // adjacentCells(i, j, color)
           var neighbors = this.neighborCells(i, j);
-          // var matches = matchCells(neighborCells, color)
+          var matches = matchCells(neighborCells, currentColor);
+
         }
       }
     }
@@ -39,21 +40,41 @@ Board.prototype = {
     return false; // Didn't find win condition
   },
 
-  neighborCells: function(row, col) {
-    var neighbors = [];
-    if (col !== 1 && row !== 6) {
-      neighbors.push([row+1, col-1]);
-    }
-    if (row !== 6) {
-      neighbors.push([row+1, col]);
-      if (col !== 7) {
-        neighbors.push([row+1,col+1]);
+  potentialWinVectors: function(row, col) {
+    // if ( !((row + 3 > 6) || (col + 3 > 7)) )
+    var vectorsToWin = [];
+    // if row + 3 > 6 || col - 3 < 1
+    // [[row + 1, col - 1], [row + 2, col - 2], [row + 3, col -3]]
+
+    // if row + 3 > 6
+    // [[row + 1, col], [row + 2, col], [row + 3, col]]
+
+    // if row + 3 > 6 || col + 3 > 7
+    // [[row + 1, col + 1], [row + 2, col + 2], [row + 3, col + 3]]
+
+    // if col + 3 > 7
+    // [[row, col + 1], [row, col + 2], [row, col + 3]]
+    for (var i = 0; i < 4; i++) {
+      var vector = [];
+      for (var j = 1; j < 4; j++) {
+
       }
     }
-    if (col !== 7) {
-      neighbors.push([row, col+1])
-    }
-    return neighbors;
+
+    // var neighbors = [];
+    // if (col !== 1 && row !== 6) {
+    //   neighbors.push([row+1, col-1]);
+    // }
+    // if (row !== 6) {
+    //   neighbors.push([row+1, col]);
+    //   if (col !== 7) {
+    //     neighbors.push([row+1,col+1]);
+    //   }
+    // }
+    // if (col !== 7) {
+    //   neighbors.push([row, col+1])
+    // }
+    // return neighbors;
   },
 
   matchCells: function(cellSet, currentColor) {
