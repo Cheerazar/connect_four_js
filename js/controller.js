@@ -7,8 +7,7 @@ var Controller = function(model,view) {
 Controller.prototype = {
   clickColumn: function() {
     var column = parseInt($(this).attr('class')[3], 10);
-    var row = model.dropCol(column, this.currentColor);
-
+    var row = model.dropCol(column, controller.currentColor);
     if (row) {
       view.insertChip(row, column, controller.currentColor);
       controller.changeTurn();
